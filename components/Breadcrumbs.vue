@@ -28,31 +28,38 @@ export default {
     return {
       homeIcon,
       mealDetails: {},
-      breadcrumbs: [], // Add this new data property
+      breadcrumbs: [],
     };
   },
+
   props: {
     category: {
       type: Object,
       default: () => ({}),
     },
+    breadcrumbName: {
+      type: String,
+      required: true,
+    },
+    mealDetails: {
+      type: Object,
+      default: () => ({}),
+    },
   },
+
   computed: {
     categoryName() {
       return this.$route.query.categoryName || "";
     },
   },
+
   methods: {
     getCrumbName(item) {
       if (this.category && item.name === "categorydetail") {
         return this.category.name;
       }
-      if (
-        item.name === "mealdetail" &&
-        this.mealDetails &&
-        this.mealDetails.name
-      ) {
-        return this.mealDetails.name;
+      if (item.name === "mealdetail" && this.breadcrumbName) {
+        return this.breadcrumbName;
       }
       return item.name || item.path;
     },
@@ -67,49 +74,47 @@ export default {
           mealDetails = {
             id: res.meals[0].idMeal,
             name: res.meals[0].strMeal,
-            // Other properties of the meal
           };
         });
       return mealDetails;
     },
   },
+
   async created() {
-    if (this.$route.query.meal_id) {
-      const mealId = this.$route.query.meal_id;
-      const mealData = await this.fetchMealDetails(mealId);
-      this.mealDetails = mealData;
+    const crumbs = [
+      { path: "/", name: "Home" },
+      { path: "/food", name: "Food", classes: "" },
+    ];
+    
+    this.$route.matched.forEach((item, i, { length }) => {
+      const crumb = {};
+      crumb.path = item.path;
+      crumb.name = this.getCrumbName(item);
+      crumb.isLast = i === length - 1;
 
-      const crumbs = [
-        { path: "/", name: "Home" },
-        { path: "/food", name: "Food", classes: "" },
-      ];
-
-      this.$route.matched.forEach((item, i, { length }) => {
-        const crumb = {};
-        crumb.path = item.path;
-        crumb.name = this.getCrumbName(item);
-        crumb.isLast = i === length - 1;
-
-        if (crumb.isLast) {
-          crumb.classes = "font-bold";
-        }
-
-        crumbs.push(crumb);
-      });
-
-      // Add categoryname breadcrumb
-      if (this.categoryName) {
-        crumbs.push({
-          path: "/food/" + this.categoryName,
-          name: this.categoryName,
-          classes: "font-bold",
-        });
+      if (crumb.isLast) {
+        crumb.classes = "font-bold";
       }
 
-      // Remove the meal name addition from here
+      crumbs.push(crumb);
+    });
 
-      this.breadcrumbs = crumbs;
+    // Add dynamic breadcrumb based on the route name
+    if (this.$route.name === "categorydetail") {
+      crumbs.push({
+        path: "/food/" + this.categoryName,
+        name: this.categoryName,
+        classes: "font-bold",
+      });
+    } else if (this.$route.name === "mealdetail") {
+      crumbs.push({
+        path: "/food/" + this.mealDetails.name,
+        name: this.mealDetails.name,
+        classes: "font-bold",
+      });
     }
+
+    this.breadcrumbs = crumbs;
   },
 };
 </script>

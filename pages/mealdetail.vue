@@ -6,7 +6,10 @@
       :key="data.id"
       class="container mx-auto px-52 py-10"
     >
-    <Breadcrumbs />
+      <breadcrumbs
+        :breadcrumbName="mealName"
+        :mealDetails="mainData[0]"
+      ></breadcrumbs>
       <div class="h-20 grid gap-y-5 text-left border-b-2">
         <h1 class="text-5xl font-poppins font-regular">{{ data.strMeal }}</h1>
       </div>
@@ -76,7 +79,18 @@ export default {
       rawText: "",
       videoURL: "",
       embedURL: "",
+      mealName: "",
     };
+  },
+  watch: {
+    mainData: {
+      handler(newValue) {
+        if (newValue && newValue.length > 0) {
+          this.mealName = newValue[0].strMeal;
+        }
+      },
+      immediate: true,
+    },
   },
   async mounted() {
     await fetch(
