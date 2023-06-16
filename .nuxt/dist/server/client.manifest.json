@@ -1,0 +1,15 @@
+{
+  "@vite/client": {
+    "isEntry": true,
+    "file": "@vite/client",
+    "css": [],
+    "module": true,
+    "resourceType": "script"
+  },
+  "E:/Kerja/Magang/CMLABS/pre test/cmlabs-feinternship-test/node_modules/nuxt/dist/app/entry.js": {
+    "resourceType": "script",
+    "module": true,
+    "isEntry": true,
+    "file": "E:/Kerja/Magang/CMLABS/pre test/cmlabs-feinternship-test/node_modules/nuxt/dist/app/entry.js"
+  }
+}
