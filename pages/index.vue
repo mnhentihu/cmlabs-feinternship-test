@@ -36,7 +36,7 @@
             <div
               class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out"
             >
-              <p class="text-white text-2xl font-poppins ">{{ data.strCategory }}</p>
+              <p class="text-white text-2xl font-poppins">{{ data.strCategory }}</p>
             </div>
           </nuxt-link>
         </div>

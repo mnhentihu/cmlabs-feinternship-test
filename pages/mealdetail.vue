@@ -6,6 +6,7 @@
       :key="data.id"
       class="container mx-auto px-52 py-10"
     >
+    <Breadcrumbs />
       <div class="h-20 grid gap-y-5 text-left border-b-2">
         <h1 class="text-5xl font-poppins font-regular">{{ data.strMeal }}</h1>
       </div>
