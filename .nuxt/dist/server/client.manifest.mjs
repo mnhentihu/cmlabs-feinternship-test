@@ -1,0 +1,1 @@
+export { default } from "file:///E:/Kerja/Magang/CMLABS/pre%20test/cmlabs-feinternship-test/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"

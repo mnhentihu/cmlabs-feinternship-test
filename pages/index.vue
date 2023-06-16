@@ -2,7 +2,7 @@
   <Navbar />
   <body>
     <div
-      class="h-80 bg-slate-200 flex flex-col justify-center text-center gap-y-3"
+      class="h-80 bg-slate-50 flex flex-col justify-center text-center gap-y-3"
     >
       <div class="flex flex-row justify-center gap-4 text-red-500">
         <Icon icon="bxs:bowl-hot" />
@@ -36,7 +36,7 @@
             <div
               class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out"
             >
-              <p class="text-white text-lg">{{ data.strCategory }}</p>
+              <p class="text-white text-2xl font-poppins ">{{ data.strCategory }}</p>
             </div>
           </nuxt-link>
         </div>
