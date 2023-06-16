@@ -88,7 +88,7 @@ export default {
         this.rawText = res.meals[0].strInstructions;
         this.videoURL = res.meals[0].strYoutube;
       });
-    console.log(this.mainData);
+    // console.log(this.mainData);
   },
 
   computed: {
