@@ -55,8 +55,8 @@
         <div class="youtube-video flex justify-center mt-3">
           <iframe
             class=""
-            width="560"
-            height="315"
+            width="1120 "
+            height="630"
             :src="embedURL"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
